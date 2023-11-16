@@ -1,0 +1,3 @@
+from ChickenDiseaseClassification import logger
+
+
