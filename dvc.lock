@@ -14,9 +14,9 @@ stages:
     outs:
     - path: artifacts/data_ingestion/Train
       hash: md5
-      md5: f87a3d512849211e548d48d8ffd57328.dir
-      size: 293906097
-      nfiles: 8067
+      md5: 93a5e60d94983025172573c91e5e4d0e.dir
+      size: 259543960
+      nfiles: 7347
   prepare_base_model:
     cmd: python src/ChickenDiseaseClassification/pipeline/stage_02_base_model_preparation.py
     deps:
@@ -30,7 +30,7 @@ stages:
       size: 1040
     params:
       params.yaml:
-        CLASSES: 8
+        CLASSES: 4
         IMAGE_SIZE:
         - 224
         - 224
@@ -41,21 +41,21 @@ stages:
     outs:
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: 8d4836df186519d28e166c32cbf74697.dir
-      size: 118661360
+      md5: 977d7f67898a87417d7de7e42269fc12.dir
+      size: 89633472
       nfiles: 2
   training:
     cmd: python src/ChickenDiseaseClassification/pipeline/stage_03_training.py
     deps:
     - path: artifacts/data_ingestion/Train
       hash: md5
-      md5: f87a3d512849211e548d48d8ffd57328.dir
-      size: 293906097
-      nfiles: 8067
+      md5: 93a5e60d94983025172573c91e5e4d0e.dir
+      size: 259543960
+      nfiles: 7347
     - path: artifacts/prepare_base_model
       hash: md5
-      md5: 8d4836df186519d28e166c32cbf74697.dir
-      size: 118661360
+      md5: 977d7f67898a87417d7de7e42269fc12.dir
+      size: 89633472
       nfiles: 2
     - path: config/config.yaml
       hash: md5
@@ -72,8 +72,8 @@ stages:
     params:
       params.yaml:
         AUGMENTATION: true
-        BATCH_SIZE: 16
-        EPOCHS: 2
+        BATCH_SIZE: 40
+        EPOCHS: 10
         IMAGE_SIZE:
         - 224
         - 224
@@ -81,20 +81,20 @@ stages:
     outs:
     - path: artifacts/training/model.h5
       hash: md5
-      md5: 887059e39308277d5ceb663cdf154a73
-      size: 60544944
+      md5: ce095ddd79eeb5449d997084919b96ff
+      size: 90163776
   evaluation:
     cmd: python src/ChickenDiseaseClassification/pipeline/stage_04_evaluation.py
     deps:
     - path: artifacts/data_ingestion/Train
       hash: md5
-      md5: f87a3d512849211e548d48d8ffd57328.dir
-      size: 293906097
-      nfiles: 8067
+      md5: 93a5e60d94983025172573c91e5e4d0e.dir
+      size: 259543960
+      nfiles: 7347
     - path: artifacts/training/model.h5
       hash: md5
-      md5: 887059e39308277d5ceb663cdf154a73
-      size: 60544944
+      md5: ce095ddd79eeb5449d997084919b96ff
+      size: 90163776
     - path: config/config.yaml
       hash: md5
       md5: 0c41e8eb1d7194741320f6546e03ac23
@@ -105,7 +105,7 @@ stages:
       size: 928
     params:
       params.yaml:
-        BATCH_SIZE: 16
+        BATCH_SIZE: 40
         IMAGE_SIZE:
         - 224
         - 224
@@ -113,5 +113,5 @@ stages:
     outs:
     - path: scores.json
       hash: md5
-      md5: 59dcbe4d4a90bbdda715bc07d97738b8
-      size: 72
+      md5: f503095271eb1eca1f17c97efce3affb
+      size: 67
