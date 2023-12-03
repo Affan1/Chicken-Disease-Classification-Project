@@ -1,10 +1,5 @@
 # Chicken-Disease-Classification--Project
 
-Absolutely! Here's the entire content in a single snippet:
-
-````markdown
-# Chicken Disease Classification
-
 ## Overview
 
 This repository contains a machine learning project for the classification of chicken diseases using image data. The goal is to develop a model that can accurately identify common diseases in chickens based on images of affected birds. This project can be useful in early detection and monitoring of diseases in poultry farms.
@@ -179,4 +174,7 @@ This project can be extended by:
 - Fine-tuning hyperparameters for better performance.
 
 Feel free to contribute, open issues, or provide feedback!
-````
+
+```
+
+```
